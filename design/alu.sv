@@ -1,11 +1,11 @@
 module alu(
     input [7:0] i_1,
-    input [7:0] i_2,
+    input  [7:0] i_2,
     
-    output [7:0] o_main,
+    output logic [7:0] o_main,
     
     input carry_ce,
-    output carry_out
+    output logic carry_out
 );
     enum logic [2:0] {
         ADD = 3'b000,
@@ -17,7 +17,7 @@ module alu(
         REG = 3'b110
     } instruction_code;
 	 
-	always_comb begin
+	always @(instruction_code) begin //always_comb nie dziala w systemverilogu
     case (instruction_code)
         ADD: o_main = i_1 + i_2;
         SUBTRACT: o_main = i_1 - i_2;
@@ -28,6 +28,6 @@ module alu(
         REG: o_main = i_2;
         default: o_main = 8'd0; 
     endcase
-	 end
+	end
 
 endmodule : alu
