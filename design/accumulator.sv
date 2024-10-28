@@ -1,7 +1,7 @@
 module accumulator(
 
     input [7:0] input_from_alu,
-    output [7:0] output_,
+    output logic [7:0] output_main,
 
     input clk,
     input ce
@@ -9,7 +9,7 @@ module accumulator(
 
 always_ff @(posedge clk) begin
     if(ce)
-        output_ <= input_from_alu;
+        output_main <= input_from_alu;
 end
 
 endmodule : accumulator
