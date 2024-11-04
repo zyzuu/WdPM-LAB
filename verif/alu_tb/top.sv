@@ -1,4 +1,4 @@
- `timescale 1ns / 1ps 
+`timescale 1ns / 1ps 
 module top();
     reg [7:0] in_1;
     reg [7:0] in_2;
