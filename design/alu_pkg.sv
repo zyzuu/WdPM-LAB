@@ -6,7 +6,7 @@
     OR_OP = 3'b011,
     XOR_OP = 3'b100,
     NOT_OP = 3'b101,
-    REG = 3'b110
+    LOAD = 3'b110
 } instruction_code;
     
  endpackage : alu_pkg
