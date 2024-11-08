@@ -5,10 +5,9 @@ module program_memory(
 logic [5:0]/*word size*/ instruction_set [31:0]/*number of elements in array*/;
 
 initial begin
-    $readmemh("memory.mem", instruction_set);
+    $readmemb("/home/student/MG/WdPM/design/memory.mem", instruction_set);
 end
 
-always_comb begin
-    instruction = instruction_set[instruction_address];
-end
+assign instruction = instruction_set[instruction_address];
+
 endmodule : program_memory
