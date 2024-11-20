@@ -1,0 +1,41 @@
+`timescale 1ns/1ns
+module top();
+    reg clk;
+    wire [5:0] instruction_wire;
+    reg rst;
+    reg ALU_ce;
+    reg A_ce;
+    reg [2:0] ALU_opcode_wire;
+    reg [1:0] RF_addr;
+    logic RF_ce;
+
+    simple_top dut(.clk(clk), .rst(rst), .instruction_wire(instruction_wire),
+    //.ce_0_wire(ce_0_wire),
+    //.ce_1_wire(ce_1_wire),
+    //.ce_2_wire(ce_2_wire),
+    //.ce_3_wire(ce_3_wire),
+    .RF_ce(RF_ce),
+    .ALU_ce(ALU_ce),
+    .A_ce(A_ce),
+    .ALU_opcode_wire(ALU_opcode_wire),
+    .RF_addr(RF_addr));
+
+    initial clk = 0;
+    always #5 clk = ~clk;
+
+    initial rst <= 1;
+
+    initial begin
+        #5 rst <= 0;
+    //repeat(32) begin
+    //    @(posedge clk);
+    //    $display("instruction: %b", instruction);
+    //end
+        #5000 $finish;
+    end
+    initial begin
+    $dumpvars;
+    $dumpfile ("dump.vcd");
+    end
+
+endmodule : top
