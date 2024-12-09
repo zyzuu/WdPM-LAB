@@ -9,7 +9,8 @@ $DESIGN_DIR/instruction_decoder.sv \
 $DESIGN_DIR/program_counter.sv \
 $DESIGN_DIR/program_memory.sv \
 $DESIGN_DIR/simple_top.sv \
-$VERIF_DIR/pc_pm_tb/top.sv
+$DESIGN_DIR/register_file.sv \
+$VERIF_DIR/simple_tb/simple_tb.sv 
 vsim -voptargs="+acc" top
-add wave -r /*
+do wave.do
 run -all

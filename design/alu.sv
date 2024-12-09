@@ -7,20 +7,17 @@ module alu(
     
     output logic [7:0] o_main,
     
-    input carry_ce,
+    input carry_we,
     output logic carry_out
 );
-   
-	
 	instruction_code current_code;
 
 	always_comb begin //always_comb nie dziala w iverilogu 10.3
-        if(ALU_ce) begin
 	     current_code = instruction_code'(op_code);
 	     case (op_code)
             ADD: begin 
                 //o_main = i_1 + i_2;
-                {carry_out, o_main} = i_1 + i_2 + carry_ce;
+                {carry_out, o_main} = i_1 + i_2;// + carry_we;
                 end
             SUBTRACT: begin
                 o_main = i_1 - i_2;
@@ -30,10 +27,8 @@ module alu(
             OR_OP: o_main = i_1 | i_2;
             XOR_OP: o_main = i_1 ^ i_2;
             NOT_OP: o_main = ~i_1;
-            LOAD: o_main = i_2;
             default: o_main = i_2; //LOAD AS A DEFAULT ACTION
         endcase
-        end
 	end
 
 endmodule : alu
