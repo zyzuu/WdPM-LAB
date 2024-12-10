@@ -4,6 +4,7 @@ verif_dir := verif
 design_files += $(design_dir)/accumulator.sv
 design_files += $(design_dir)/alu_pkg.sv
 design_files += $(design_dir)/id_pkg.sv
+design_files += $(design_dir)/alu.sv
 design_files += $(design_dir)/instruction_decoder.sv
 design_files += $(design_dir)/program_counter.sv
 design_files += $(design_dir)/program_memory.sv
@@ -25,6 +26,6 @@ run:
 	@vvp $(output_file)
 
 waves:
-	@gtkwave $(waves_dump)
+	@gtkwave $(waves_dump) dump.gtkw
 
 all: comp run waves

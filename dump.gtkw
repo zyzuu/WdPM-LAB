@@ -1,0 +1,56 @@
+[*]
+[*] GTKWave Analyzer v3.3.118 (w)1999-2023 BSI
+[*] Tue Dec 10 22:11:16 2024
+[*]
+[dumpfile] "/home/reddash/Desktop/studia_2_stopien/sem_2/wprowadzenie_do_projektowania_mikroprocesorow/projekt/WdPM-LAB/dump.vcd"
+[dumpfile_mtime] "Tue Dec 10 22:06:27 2024"
+[dumpfile_size] 11425
+[savefile] "/home/reddash/Desktop/studia_2_stopien/sem_2/wprowadzenie_do_projektowania_mikroprocesorow/projekt/WdPM-LAB/dump.gtkw"
+[timestart] 3380
+[size] 1920 1006
+[pos] -1 -1
+*-7.236702 3910 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.dut.
+[sst_width] 252
+[signals_width] 256
+[sst_expanded] 1
+[sst_vpaned_height] 304
+@200
+-A
+@24
+top.dut.acu.input_from_alu[7:0]
+@200
+-ALU
+@24
+top.dut.alu.i_1[7:0]
+top.dut.alu.i_2[7:0]
+@22
+top.dut.alu.o_main[7:0]
+@200
+-PM
+@28
+top.dut.pm.instruction[15:0]
+@22
+top.dut.pm.instruction_address[4:0]
+@200
+-DUT
+@28
+top.dut.clk
+top.dut.rst
+@200
+-RF
+@22
+top.dut.rf.accumulator_input[7:0]
+top.dut.rf.reg0[7:0]
+top.dut.rf.reg1[7:0]
+top.dut.rf.reg2[7:0]
+top.dut.rf.reg3[7:0]
+@28
+top.dut.rf.register_address[1:0]
+@22
+top.dut.rf.register_value[7:0]
+@28
+top.dut.rf.we
+[pattern_trace] 1
+[pattern_trace] 0

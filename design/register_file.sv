@@ -22,7 +22,7 @@ always_ff @(posedge clk) begin
                 reg0 <= accumulator_input;
             end
             2'b01: begin
-                reg2 <= accumulator_input;
+                reg1 <= accumulator_input;
             end
             2'b10: begin
                 reg2 <= accumulator_input;

@@ -31,7 +31,7 @@ module top();
     //    @(posedge clk);
     //    $display("instruction: %b", instruction);
     //end
-        #1000 $finish;
+        #16000 $finish;
     end
     initial begin
     $dumpvars;
