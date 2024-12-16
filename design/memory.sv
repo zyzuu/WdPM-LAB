@@ -4,7 +4,7 @@ module memory(
     input [1:0] addr,
     input we,
     input [7:0] data_input,
-    output [7:0] data_output
+    output logic [7:0] data_output
 );
 localparam DATA_WIDTH = 1024;
 logic [7:0] mem [DATA_WIDTH-1:0];
@@ -23,9 +23,12 @@ always @(posedge clk) begin
         if (we) begin
             mem[addr] <= data_input;
         end
+        else begin
+            data_output <= mem[addr];
+        end
     end
 end
 
-assign data_output = !we ? mem[addr] : 'hz;
+//assign data_output = !we ? mem[addr] : 'hz;
 
 endmodule : memory
