@@ -9,10 +9,10 @@ module instruction_decoder(
 
     //Register File control
     output logic [1:0] RF_addr,
-    //output logic RF_ce_0,
-    //output logic RF_ce_1,
-    //output logic RF_ce_2,
-    //output logic RF_ce_3,
+    //output logic RF_we_0,
+    //output logic RF_we_1,
+    //output logic RF_we_2,
+    //output logic RF_we_3,
     output logic RF_we,
 
     //Accumulator control
