@@ -1,14 +1,12 @@
-module memory(
+module memory#(parameter DATA_WIDTH = 8, parameter NUMBER_OF_ELEMETS = 1024)(
     input clk,
     input rst,
-    input [1:0] addr,
-    input we,
-    input [7:0] data_input,
-    output logic [7:0] data_output
+    input [NUMBER_OF_ELEMETS-1:0] addr,
+    input we, // 1 for write; 0 for read
+    input [DATA_WIDTH-1:0] data_input,
+    output logic [DATA_WIDTH-1:0] data_output
 );
-localparam DATA_WIDTH = 1024;
-logic [7:0] mem [DATA_WIDTH-1:0];
-logic [7:0] tmp_data;
+logic [DATA_WIDTH-1:0] mem [NUMBER_OF_ELEMETS-1:0];
 
 always @(posedge clk) begin
     if (rst) begin

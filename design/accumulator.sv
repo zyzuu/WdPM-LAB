@@ -1,16 +1,15 @@
-module accumulator(
+module accumulator#(parameter DATA_WIDTH = 8)(
     input clk,
     input rst,
-    input ce,
-    input [7:0] input_from_alu,
+    input re,
+    input [DATA_WIDTH-1:0] input_from_alu,
 
-    output logic [7:0] output_main
+    output logic [DATA_WIDTH-1:0] output_main
 );
-
 
 always_ff @(posedge clk) begin
     if(!rst) begin
-        if(ce) begin
+        if(re) begin
             output_main <= input_from_alu;
         end
     end

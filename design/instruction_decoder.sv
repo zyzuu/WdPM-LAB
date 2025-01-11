@@ -16,7 +16,7 @@ module instruction_decoder(
     output logic RF_we,
 
     //Accumulator control
-    output logic A_ce
+    output logic A_re
 
 );
     cpu_instructions current_code;
@@ -26,12 +26,12 @@ module instruction_decoder(
         current_code = cpu_instructions'(instruction[15:12]);
         case(current_code)
             STORE: begin
-                A_ce = 1'b1;
+                A_re = 1'b1;
                 RF_addr = instruction[11:10];
                 RF_we = 1'b1;
             end
             LOAD: begin
-                A_ce = 1'b1;
+                A_re = 1'b1;
             end
             NOP: begin
                 ALU_ce = 0;
@@ -47,7 +47,7 @@ module instruction_decoder(
                     //ce_reg_1 = 1'b1;
                     RF_addr = instruction[1:0];
                     RF_we = 0;
-                    A_ce = 1'b0;
+                    A_re = 1'b0;
                     //RF_we_0 = 0;
                     //RF_we_1 = 0;
                     //RF_we_2 = 0;

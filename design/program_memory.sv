@@ -7,11 +7,11 @@
 `define LOAD 4'b0110
 `define STORE 4'b0111
 `define NOP 4'b1111
-module program_memory(
-    input logic [4:0] instruction_address,
-    output logic [15:0] instruction
+module program_memory#(parameter BITS_FOR_INSTRUCTIONS = 5, parameter INSTRUCTION_WIDTH = 16, parameter NUMBER_OF_INSTRUCTIONS=32)(
+    input logic [BITS_FOR_INSTRUCTIONS-1:0] instruction_address,
+    output logic [INSTRUCTION_WIDTH-1:0] instruction
 );
-logic [15:0]/*word size*/ instruction_set [0:31]/*number of elements in array*/;
+logic [INSTRUCTION_WIDTH-1:0]/*word size*/ instruction_set [0:NUMBER_OF_INSTRUCTIONS-1]/*number of elements in array*/;
 
 initial begin
     //$readmemb("/home/student/MG/WdPM/design/memory.mem", instruction_set);

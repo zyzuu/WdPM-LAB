@@ -1,21 +1,21 @@
 import alu_pkg::*;
-module alu(
-    input [7:0] i_1,
-    input  [7:0] i_2,
-    input logic [2:0] op_code,
+module alu#(parameter DATA_WIDTH = 8, parameter OPCODE_WIDTH = 3)(
+    input [DATA_WIDTH-1:0] i_1,
+    input [DATA_WIDTH-1:0] i_2,
+    input logic [OPCODE_WIDTH-1:0] op_code,
     input ALU_ce,
-    
-    output logic [7:0] o_main,
-    
+
+    output logic [DATA_WIDTH-1:0] o_main,
+
     input carry_we,
     output logic carry_out
 );
-	instruction_code current_code;
+    instruction_code current_code;
 
-	always_comb begin //always_comb nie dziala w iverilogu 10.3
-	     current_code = instruction_code'(op_code);
-	     case (op_code)
-            ADD: begin 
+    always_comb begin //always_comb nie dziala w iverilogu 10.3
+        current_code = instruction_code'(op_code);
+        case (op_code)
+            ADD: begin
                 //o_main = i_1 + i_2;
                 {carry_out, o_main} = i_1 + i_2;// + carry_we;
                 end

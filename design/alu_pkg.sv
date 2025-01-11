@@ -1,5 +1,5 @@
 package alu_pkg;
- typedef enum logic [2:0] {
+typedef enum logic [2:0] {
     ADD = 3'b000,
     SUBTRACT = 3'b001,
     AND_OP = 3'b010,
@@ -17,4 +17,3 @@ package alu_pkg;
 `define LOAD 4'b0110;
 
 endpackage : alu_pkg
-    
