@@ -4,7 +4,7 @@ module top();
     wire [15:0] instruction_wire;
     reg rst;
     reg ALU_ce;
-    reg A_ce;
+    reg A_re;
     reg [2:0] ALU_opcode_wire;
     reg [1:0] RF_addr;
     logic RF_we;
@@ -15,8 +15,7 @@ module top();
     //.ce_2_wire(ce_2_wire),
     //.ce_3_wire(ce_3_wire),
     .RF_we(RF_we),
-    .ALU_ce(ALU_ce),
-    .A_ce(A_ce),
+    .A_re(A_re),
     .ALU_opcode_wire(ALU_opcode_wire),
     .RF_addr(RF_addr));
 

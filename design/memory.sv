@@ -10,7 +10,7 @@ logic [DATA_WIDTH-1:0] mem [NUMBER_OF_ELEMETS-1:0];
 
 always @(posedge clk) begin
     if (rst) begin
-        for (int i = 0; i < DATA_WIDTH; i++) begin
+        for (int i = 0; i < NUMBER_OF_ELEMETS; i++) begin
             mem[i] <= 0;
         end
     end
@@ -21,12 +21,9 @@ always @(posedge clk) begin
         if (we) begin
             mem[addr] <= data_input;
         end
-        else begin
-            data_output <= mem[addr];
-        end
     end
 end
 
-//assign data_output = !we ? mem[addr] : 'hz;
+assign data_output = !we ? mem[addr] : 'hz;
 
 endmodule : memory

@@ -11,33 +11,31 @@ module program_memory#(parameter BITS_FOR_INSTRUCTIONS = 5, parameter INSTRUCTIO
     input logic [BITS_FOR_INSTRUCTIONS-1:0] instruction_address,
     output logic [INSTRUCTION_WIDTH-1:0] instruction
 );
-logic [INSTRUCTION_WIDTH-1:0]/*word size*/ instruction_set [0:NUMBER_OF_INSTRUCTIONS-1]/*number of elements in array*/;
+logic [INSTRUCTION_WIDTH-1:0]/*word size*/ instruction_set [NUMBER_OF_INSTRUCTIONS-1:0]/*number of elements in array*/;
 
 initial begin
     //$readmemb("/home/student/MG/WdPM/design/memory.mem", instruction_set);
-    //$display("Instruction_set: %p", instruction_set);
-    $display("ADD: %b, LOAD: %b", `ADD, `LOAD);
-    instruction_set[0] = {`NOP,2'b00, 10'd0};
-    instruction_set[1] = {`ADD,2'b00, 10'd0};
-    instruction_set[2] = {`LOAD,2'b00, 10'd0};
-    instruction_set[3] = {`ADD,2'b00, 10'd0};
-    instruction_set[4] = {`LOAD,2'b00, 10'd0};
-    instruction_set[5] = {`ADD,2'b00, 10'd0};
-    instruction_set[6] = {`LOAD,2'b00, 10'd0};
-    instruction_set[7] = {`ADD,2'b00, 10'd0};
-    instruction_set[8] = {`LOAD,2'b00, 10'd0};
-    instruction_set[9] = {`ADD,2'b00, 10'd0};
-    instruction_set[10] = {`LOAD,2'b00, 10'd0};
-    instruction_set[11] = {`ADD,2'b00, 10'd0};
-    instruction_set[12] = {`LOAD,2'b00, 10'd0};
-    instruction_set[13] = {`ADD,2'b00, 10'd0};
-    instruction_set[14] = {`LOAD,2'b00, 10'd0};
-    instruction_set[15] = {`ADD,2'b00, 10'd0};
-    instruction_set[16] = {`LOAD,2'b00, 10'd0};
-    instruction_set[17] = {`STORE, 2'b01, 10'd0};
-    instruction_set[18] = {`ADD,2'b01, 10'd0};
-    instruction_set[19] = {`LOAD,2'b01, 10'd0};
-    instruction_set[20] = {`STORE, 2'b10, 10'd0};
+    instruction_set[0] = {2'b00, 10'd0, `NOP};
+    instruction_set[1] = {2'b00, 10'd0,`ADD};
+    instruction_set[2] = {2'b00, 10'd0,`ADD};
+    instruction_set[3] = {2'b00, 10'd0,`ADD};
+    instruction_set[4] = {2'b00, 10'd0,`ADD};
+    instruction_set[5] = {2'b00, 10'd0,`ADD};
+    instruction_set[6] = {2'b00, 10'd0,`ADD};
+    instruction_set[7] = {2'b00, 10'd0,`ADD};
+    instruction_set[8] = {2'b00, 10'd0,`ADD};
+    instruction_set[9] = {2'b00, 10'd0,`ADD};
+    instruction_set[10] = {2'b00, 10'd0,`LOAD};
+    instruction_set[11] = {2'b00, 10'd0,`ADD};
+    instruction_set[12] = {2'b00, 10'd0,`LOAD};
+    instruction_set[13] = {2'b00, 10'd0,`ADD};
+    instruction_set[14] = {2'b00, 10'd0,`LOAD};
+    instruction_set[15] = {2'b00, 10'd0,`ADD};
+    instruction_set[16] = {2'b00, 10'd0,`LOAD};
+    instruction_set[17] = {2'b01, 10'd0,`STORE};
+    instruction_set[18] = {2'b01, 10'd0,`ADD};
+    instruction_set[19] = {2'b01, 10'd0,`LOAD};
+    instruction_set[20] = {2'b10, 10'd0,`STORE};
 end
 
 assign instruction = instruction_set[instruction_address];

@@ -32,6 +32,5 @@
         - ADD RESET
         - Prepare proper memory.mem file
 7. Simple top
-    - Connects PC and PM
 ## Not started
 1. Whole verification part
