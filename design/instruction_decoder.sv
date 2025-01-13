@@ -28,12 +28,24 @@ module instruction_decoder(
         case(current_code)
             STORE: begin
                 A_we = 1'b0;
-                RF_addr = instruction[15:13];
+                RF_addr = instruction[15:14];
                 RF_we = 1'b1;
             end
             LOAD: begin
                 A_we = 1'b1;
-                //if instruction[]
+                RF_we = 1'b0;
+                
+                if (instruction[5:4] == 2'b00) begin: register_load
+                    RF_addr = instruction[7:6];
+                end: register_load
+
+                else if(instruction[5:4] == 2'b01) begin: memory_load
+                    mem_addr = instruction[15:6]; 
+                end: memory_load
+                
+                else if(instruction[5:4] == 2'b10) begin: immediate_load
+                    ALU_opcode = 3'b111;
+                end: immediate_load
             end
             NOP: begin
                 //ALU_ce = 0;

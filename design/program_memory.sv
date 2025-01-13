@@ -25,9 +25,10 @@ initial begin
     instruction_set[7] = {2'b00, 10'd0,`ADD};
     instruction_set[8] = {2'b00, 10'd0,`ADD};
     instruction_set[9] = {2'b00, 10'd0,`ADD};
-    instruction_set[10] = {2'b00, 10'd0,`LOAD};
-    instruction_set[11] = {2'b00, 10'd0,`ADD};
-    instruction_set[12] = {2'b00, 10'd0,`LOAD};
+    instruction_set[10] = {2'b01, 10'd0,`STORE};
+    instruction_set[11] = { 8'd0,2'b00,2'b00,`LOAD};
+    instruction_set[12] = { 8'd0,2'b01,2'b00,`LOAD};
+    //instruction_set[12] = {2'b00, 10'd0,`LOAD};
     instruction_set[13] = {2'b00, 10'd0,`ADD};
     instruction_set[14] = {2'b00, 10'd0,`LOAD};
     instruction_set[15] = {2'b00, 10'd0,`ADD};

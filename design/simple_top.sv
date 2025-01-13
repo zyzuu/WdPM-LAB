@@ -26,6 +26,7 @@ module simple_top(
     program_memory pm(.instruction_address(instruction_address_wire), .instruction(instruction_wire));
     instruction_decoder id(.instruction(instruction_wire), .ALU_opcode(ALU_opcode_wire), .ALU_ce(ALU_ce), .RF_addr(RF_addr), /*.RF_ce_0(ce_0_wire),
     .RF_ce_1(ce_1_wire), .RF_ce_2(ce_2_wire), .RF_ce_3(ce_3_wire), */.RF_we(RF_we), .A_we(A_we));
+    mux_mem_rf_imm mux(.data_input_rf(register_file_output_wire), .data_input_mem(), .data_input_im(), .data_output_from_mux());
     alu alu(.i_1(accumulator_output_wire), .i_2(register_file_output_wire), .op_code(ALU_opcode_wire), .ALU_ce(ALU_ce), .o_main(accumulator_input_wire), .carry_we(carry_we_wire), .carry_out(carry_out_wire));
     accumulator acu(.clk(clk), .rst(rst), .we(A_we), .input_from_alu(accumulator_input_wire), .output_main(accumulator_output_wire));
     register_file rf(.clk(clk), .register_address(RF_addr), .we(RF_we), .accumulator_input(accumulator_output_wire), .register_value(register_file_output_wire));
