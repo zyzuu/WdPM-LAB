@@ -3,7 +3,7 @@ module mux_mem_rf_imm#(parameter DATA_WIDTH = 8, parameter MUX_SELECT_BITS = 2)(
     input [DATA_WIDTH-1:0] data_input_mem,
     input [DATA_WIDTH-1:0] data_input_imm,
     input [MUX_SELECT_BITS-1:0] select,
-    output [DATA_WIDTH-1:0] data_output_from_mux,
+    output logic [DATA_WIDTH-1:0] data_output_from_mux
 );
 always_comb begin
     case(select)
