@@ -16,11 +16,11 @@ module simple_top(
     localparam MUX_DEMUX_SELECTOR_WIDTH = 2;
     logic [4:0] instruction_address_wire;
     //logic [5:0] instruction_wire;
-    logic [2:0] register_address_wire;
+    logic [1:0] register_address_wire;
     //logic [1:0] RF_addr;
     //logic ce_0_wire, ce_1_wire, ce_2_wire, ce_3_wire, ALU_ce, A_ce;
     //logic [2:0] ALU_opcode_wire;
-    logic carry_we_wire, carry_out_wire;
+    logic carry_in_wire, carry_out_wire;
     logic [DATA_WIDTH-1:0] accumulator_input_wire;
     logic [DATA_WIDTH-1:0] accumulator_output_wire;
     logic [DATA_WIDTH-1:0] register_file_output_wire;
@@ -44,6 +44,7 @@ module simple_top(
     
     instruction_decoder id(
         .instruction(instruction_wire),
+        .carry_out(carry_out_wire),
         .ALU_opcode(ALU_opcode_wire),
         .RF_addr(RF_addr),
         .RF_we(RF_we),
@@ -51,6 +52,7 @@ module simple_top(
         .MEM_we(MEM_we),
         .IMM_value(immediate_value_output_wire),
         .selector(mux_selector_wire),
+        .carry_in(carry_in_wire),
         .A_we(A_we)
         );
     
@@ -77,7 +79,7 @@ module simple_top(
         .i_2(mux_output_wire), 
         .op_code(ALU_opcode_wire), 
         .o_main(accumulator_input_wire), 
-        .carry_we(carry_we_wire), 
+        .carry_in(carry_in_wire), 
         .carry_out(carry_out_wire)
         );
 

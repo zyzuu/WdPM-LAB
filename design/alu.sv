@@ -3,11 +3,10 @@ module alu#(parameter DATA_WIDTH = 8, parameter OPCODE_WIDTH = 3)(
     input [DATA_WIDTH-1:0] i_1,
     input [DATA_WIDTH-1:0] i_2,
     input logic [OPCODE_WIDTH-1:0] op_code,
-    input ALU_ce,
 
     output logic [DATA_WIDTH-1:0] o_main,
 
-    input carry_we,
+    input carry_in,
     output logic carry_out
 );
     instruction_code current_code;
@@ -17,11 +16,13 @@ module alu#(parameter DATA_WIDTH = 8, parameter OPCODE_WIDTH = 3)(
         case (op_code)
             ADD: begin
                 //o_main = i_1 + i_2;
-                {carry_out, o_main} = i_1 + i_2;// + carry_we;
+                {carry_out, o_main} = i_1 + i_2;
                 end
+            ADDF: begin
+                {carry_out, o_main} = i_1 + i_2 + carry_in;
+            end
             SUBTRACT: begin
                 o_main = i_1 - i_2;
-                //TODO: ADD BORROW FLAG
             end
             AND_OP: o_main = i_1 & i_2;
             OR_OP: o_main = i_1 | i_2;

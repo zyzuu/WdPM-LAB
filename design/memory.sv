@@ -1,7 +1,11 @@
-module memory#(parameter DATA_WIDTH = 8, parameter NUMBER_OF_ELEMETS = 1024)(
+module memory#(
+    parameter DATA_WIDTH = 8,
+    parameter ADDR_WIDTH = 10,
+    parameter NUMBER_OF_ELEMETS = 1024
+    )(
     input clk,
     input rst,
-    input [NUMBER_OF_ELEMETS-1:0] addr,
+    input [ADDR_WIDTH-1:0] addr,
     input we, // 1 for write; 0 for read
     input [DATA_WIDTH-1:0] data_input,
     output logic [DATA_WIDTH-1:0] data_output

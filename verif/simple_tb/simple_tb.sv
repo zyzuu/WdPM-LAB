@@ -33,8 +33,8 @@ module top();
         #16000 $finish;
     end
     initial begin
-    $dumpvars;
     $dumpfile ("dump.vcd");
+    $dumpvars;
     end
 
 endmodule : top
