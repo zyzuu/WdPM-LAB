@@ -1,7 +1,10 @@
+# TODO:
+ - Connect properly mux and demux to the instruction decoder and proper blocks
+ - Add immediate value to the instruction set and decoder
+ - Add simple jumps
+ - Add load word and store word commands to the instruction set
+ - Add simple jump to the instruction set
 # Design part
-## Completed
-
-## Partially completed
 1. ALU
     - Addition
     - Subtraction
@@ -11,7 +14,6 @@
     - NOT Operation
 2. Accumulator
     - Works as D flip flop
-    TODO:  Add reset
 3. Instruction decoder
     - Takes an instruction
     - Selects one of three operations
