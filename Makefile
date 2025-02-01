@@ -1,12 +1,14 @@
 design_dir := design
 verif_dir := verif
 # Design files
+design_files += $(design_dir)/dff.sv
 design_files += $(design_dir)/accumulator.sv
 design_files += $(design_dir)/alu_pkg.sv
 design_files += $(design_dir)/id_pkg.sv
 design_files += $(design_dir)/alu.sv
 design_files += $(design_dir)/instruction_decoder.sv
 design_files += $(design_dir)/program_counter.sv
+design_files += $(design_dir)/mux_mem_rf_imm.sv
 design_files += $(design_dir)/program_memory.sv
 design_files += $(design_dir)/register_file.sv
 design_files += $(design_dir)/memory.sv

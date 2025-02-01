@@ -32,16 +32,16 @@ module simple_top(
     logic MEM_we;
 
     program_counter pc(
-        .clk(clk), 
-        .rst(rst), 
+        .clk(clk),
+        .rst(rst),
         .instruction_address(instruction_address_wire)
         );
-    
+
     program_memory pm(
         .instruction_address(instruction_address_wire),
         .instruction(instruction_wire)
         );
-    
+
     instruction_decoder id(
         .instruction(instruction_wire),
         .carry_out(carry_out_wire),
@@ -52,10 +52,9 @@ module simple_top(
         .MEM_we(MEM_we),
         .IMM_value(immediate_value_output_wire),
         .selector(mux_selector_wire),
-        .carry_in(carry_in_wire),
         .A_we(A_we)
         );
-    
+
     memory mem(
         .clk(clk),
         .rst(rst),
@@ -64,39 +63,46 @@ module simple_top(
         .data_input(mux_output_wire),
         .data_output(memory_output_wire)
         );
-    
+
     mux_mem_rf_imm mux(
         .data_input_rf(register_file_output_wire),
-        .data_input_mem(memory_output_wire), 
+        .data_input_mem(memory_output_wire),
         .data_input_imm(immediate_value_output_wire),
-        .select(mux_selector_wire), 
+        .select(mux_selector_wire),
         .data_output_from_mux(mux_output_wire)
         );
-    
-    
+
+
     alu alu(
         .i_1(accumulator_output_wire),
-        .i_2(mux_output_wire), 
-        .op_code(ALU_opcode_wire), 
-        .o_main(accumulator_input_wire), 
-        .carry_in(carry_in_wire), 
+        .i_2(mux_output_wire),
+        .op_code(ALU_opcode_wire),
+        .o_main(accumulator_input_wire),
+        .carry_in(carry_in_wire),
         .carry_out(carry_out_wire)
         );
 
+    dff dff(
+        .clk(clk),
+        .rst(rst),
+        .we(A_we),
+        .data_in(carry_out_wire),
+        .data_out(carry_in_wire)
+    );
 
     accumulator acu(
-        .clk(clk), 
-        .rst(rst), 
-        .we(A_we), 
-        .input_from_alu(accumulator_input_wire), 
+        .clk(clk),
+        .rst(rst),
+        .we(A_we),
+        .input_from_alu(accumulator_input_wire),
         .output_main(accumulator_output_wire)
         );
 
     register_file rf(
-        .clk(clk), 
-        .register_address(RF_addr), 
-        .we(RF_we), 
-        .accumulator_input(accumulator_output_wire), 
+        .clk(clk),
+        .register_address(RF_addr),
+        .we(RF_we),
+        .accumulator_input(accumulator_output_wire),
         .register_value(register_file_output_wire)
         );
 

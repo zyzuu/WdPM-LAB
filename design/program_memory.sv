@@ -15,6 +15,12 @@ module program_memory#(parameter BITS_FOR_INSTRUCTIONS = 5, parameter INSTRUCTIO
 logic [INSTRUCTION_WIDTH-1:0]/*word size*/ instruction_set [NUMBER_OF_INSTRUCTIONS-1:0]/*number of elements in array*/;
 
 initial begin
+    for (int i=0; i<NUMBER_OF_INSTRUCTIONS; i++) begin
+        instruction_set[i] = {10'd0, 2'b00,  `NOP};
+    end
+end
+
+initial begin
     //$readmemb("/home/student/MG/WdPM/design/memory.mem", instruction_set);
     instruction_set[0] = {10'd0, 2'b00,  `NOP};
     instruction_set[1] = {10'd0, 2'b00, `ADD};
@@ -30,14 +36,13 @@ initial begin
     instruction_set[11] = {10'd0, 2'b00,  `NOP};
     instruction_set[12] = {10'd0, 2'b00,  `NOP};
     instruction_set[13] = {10'd0, 2'b00,  `NOP};
-    instruction_set[14] = {8'd511, 2'b10,`LOAD};
+    instruction_set[14] = {8'd255,2'b00, 2'b10,`LOAD};
     instruction_set[15] = {10'd0, 2'b10, `ADD};
-    instruction_set[15] = {10'd0, 2'b00, `ADD};
-    instruction_set[15] = {10'd0, 2'b10,`STORERF};
-    instruction_set[16] = {8'd0,2'b10,2'b00,`LOAD};
-    instruction_set[17] = {2'b00, 10'd123,`STOREMEM};
+    instruction_set[16] = {10'd0, 2'b00, `ADD};
+    instruction_set[17] = {10'd0, 2'b10,`STORERF};
+    //instruction_set[16] = {8'd0,2'b10,2'b00,`LOAD};
+    //instruction_set[17] = {2'b00, 10'd123,`STOREMEM};
     instruction_set[18] = {10'd123,2'b01,`LOAD};
-    instruction_set[19] = {2'b01, 10'd0,`LOAD};
     //instruction_set[20] = {2'b10, 10'd0,`STORE};
 end
 
