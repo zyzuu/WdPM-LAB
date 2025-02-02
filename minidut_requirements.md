@@ -24,7 +24,6 @@
 - High state synchronous reset
 ##### Operation
 - Data available after positive clock edge appears if accumulator_ce is high
-- Carry out flag appears independently of accumulator_ce and appears in the same clock cycle in which inputs to alu were provided, since alu is a combinational logic block.
 - If the result of the add operation overflows 8 bits, the state of the carry out flag changes to 1 and the value is added from zero.
 - Carry flag is consumed by arithmetic operations and not by logic operations, but logic operations do not preserve carry flag.
 - LOAD operation preserves carry flag
