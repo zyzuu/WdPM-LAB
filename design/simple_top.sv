@@ -7,7 +7,7 @@ module simple_top(
     //output logic ce_2_wire,
     //output logic ce_3_wire,
     output logic RF_we,
-    output logic A_re,
+    output logic A_we,
     output logic [2:0] ALU_opcode_wire,
     output logic [1:0] RF_addr
 );

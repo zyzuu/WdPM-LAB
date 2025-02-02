@@ -15,6 +15,8 @@ module alu_accu_top#(
 );
 
     logic [DATA_WIDTH-1:0] accumulator_input_wire;
+    logic carry_in_wire;
+    logic carry_out_wire;
 
     alu alu(
         .i_1(input_data_0),
@@ -22,8 +24,16 @@ module alu_accu_top#(
         .op_code(alu_opcode),
         .o_main(accumulator_input_wire),
         .carry_in(carry_in),
-        .carry_out(carry_out)
+        .carry_out(carry_out_wire)
         );
+        
+    dff dff(
+        .clk(clk),
+        .rst(rst),
+        .we(accumulator_ce),
+        .data_in(carry_out_wire),
+        .data_out(carry_in_wire)
+    );
 
     accumulator acu(
         .clk(clk),
@@ -37,5 +47,7 @@ module alu_accu_top#(
         $dumpfile("minidut.vcd");
         $dumpvars(0);
         end
+        assign carry_out = carry_in_wire;
+         
 
 endmodule : alu_accu_top
