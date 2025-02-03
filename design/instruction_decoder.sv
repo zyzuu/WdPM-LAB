@@ -1,5 +1,4 @@
-import id_pkg::*;
-import alu_pkg::*;
+import share_pkg::*;
 module instruction_decoder#(
     parameter INSTRUCTION_WIDTH = 16,
     parameter ALU_OPCODE_WIDTH = 3,
@@ -48,7 +47,7 @@ module instruction_decoder#(
         MEM_addr = 10'b0;
         IMM_value = 8'b0;
         selector = 2'b0;
-        ALU_opcode = 3'b111;
+        ALU_opcode = LOAD_OP;
         PC_jump_enable = 1'b0;
         PC_jump_value = 5'b0;
 
@@ -67,18 +66,18 @@ module instruction_decoder#(
             LOAD: begin
                 A_we = 1'b1;
                 RF_we = 1'b0;
-                ALU_opcode = 3'b111;
+                ALU_opcode = LOAD_OP;
                 selector = instruction[5:4];
 
-                if (instruction[5:4] == 2'b00) begin: register_load
+                if (selector == RF_load) begin: register_load
                     RF_addr = instruction[7:6];
                 end: register_load
 
-                else if(instruction[5:4] == 2'b01) begin: memory_load
+                else if(selector == MEM_load) begin: memory_load
                     MEM_addr = instruction[15:6];
                 end: memory_load
 
-                else if(instruction[5:4] == 2'b10) begin: immediate_load
+                else if(selector == IMM_load) begin: immediate_load
                     IMM_value = instruction[15:8];
                 end: immediate_load
 
@@ -96,17 +95,17 @@ module instruction_decoder#(
                 PC_jump_value = instruction[8:4];
             end
             default: begin
-                    ALU_opcode = current_code[2:0];
+                    ALU_opcode = alu_instructions'(current_code[2:0]);
                     selector = instruction[5:4];
-                    if (instruction[5:4] == 2'b00) begin: use_value_from_register
+                    if (selector == RF_load) begin: use_value_from_register
                         RF_addr = instruction[7:6];
                     end: use_value_from_register
 
-                    else if(instruction[5:4] == 2'b01) begin: use_value_from_memory
+                    else if(selector == MEM_load) begin: use_value_from_memory
                         MEM_addr = instruction[15:6];
                     end: use_value_from_memory
 
-                    else if(instruction[5:4] == 2'b10) begin: use_immediate_value
+                    else if(selector == IMM_load) begin: use_immediate_value
                         IMM_value = instruction[15:7];
                     end: use_immediate_value
 

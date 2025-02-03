@@ -12,7 +12,7 @@ module memory#(
 );
 logic [DATA_WIDTH-1:0] mem [NUMBER_OF_ELEMETS-1:0];
 
-always @(posedge clk) begin
+always_ff @(posedge clk) begin
     if (rst) begin
         for (int i = 0; i < NUMBER_OF_ELEMETS; i++) begin
             mem[i] <= 0;
@@ -20,7 +20,7 @@ always @(posedge clk) begin
     end
 end
 
-always @(posedge clk) begin
+always_ff @(posedge clk) begin
     if(!rst) begin
         if (we) begin
             mem[addr] <= data_input;

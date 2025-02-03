@@ -3,7 +3,7 @@ module program_counter#(parameter BITS_FOR_INSTRUCTIONS = 5)(
     input logic rst,
     // Controlled from Instruction Decoder
     input logic jump_enable,
-    input logic jump_value,
+    input logic [BITS_FOR_INSTRUCTIONS-1:0] jump_value,
 
     output logic [BITS_FOR_INSTRUCTIONS-1:0] instruction_address
 );

@@ -4,7 +4,7 @@
 //`define OR_OP 4'b0011;
 //`define XOR_OP 4'b0100;
 //`define NOT_OP 4'b0101;
-import alu_pkg::*;
+import share_pkg::*;
 module alu#(parameter DATA_WIDTH = 8, parameter OPCODE_WIDTH = 3)(
     input [DATA_WIDTH-1:0] i_1,
     input [DATA_WIDTH-1:0] i_2,

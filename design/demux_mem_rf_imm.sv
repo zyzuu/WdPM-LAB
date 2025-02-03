@@ -8,16 +8,16 @@ module demux_mem_rf_imm#(parameter DATA_WIDTH = 8, parameter DEMUX_SELECT_BITS =
 always_comb begin
     case(select)
         2'b00: begin
-            data_input_rf <= data_input_to_demux;
+            data_input_rf = data_input_to_demux;
         end
         2'b01: begin
-            data_input_mem <= data_input_to_demux;
+            data_input_mem = data_input_to_demux;
         end
         2'b10: begin
-            data_input_imm <= data_input_to_demux;
+            data_input_imm = data_input_to_demux;
         end
         default: begin
-            data_input_rf <= data_input_to_demux;
+            data_input_rf = data_input_to_demux;
         end
     endcase
 end

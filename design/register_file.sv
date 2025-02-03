@@ -38,7 +38,6 @@ always_comb begin
     case(register_address)
         2'b00: begin
             register_value = reg0;
-            //register_value = immediate;
         end
         2'b01: begin
             register_value = reg1;
