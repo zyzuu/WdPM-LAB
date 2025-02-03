@@ -1,25 +1,27 @@
 [*]
 [*] GTKWave Analyzer v3.3.118 (w)1999-2023 BSI
-[*] Tue Dec 10 22:11:16 2024
+[*] Mon Feb  3 18:12:22 2025
 [*]
 [dumpfile] "/home/reddash/Desktop/studia_2_stopien/sem_2/wprowadzenie_do_projektowania_mikroprocesorow/projekt/WdPM-LAB/dump.vcd"
-[dumpfile_mtime] "Tue Dec 10 22:06:27 2024"
-[dumpfile_size] 11425
+[dumpfile_mtime] "Mon Feb  3 17:16:14 2025"
+[dumpfile_size] 14169
 [savefile] "/home/reddash/Desktop/studia_2_stopien/sem_2/wprowadzenie_do_projektowania_mikroprocesorow/projekt/WdPM-LAB/dump.gtkw"
-[timestart] 3380
+[timestart] 0
 [size] 1920 1006
 [pos] -1 -1
-*-7.236702 3910 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-12.557799 6990 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.dut.
 [sst_width] 252
-[signals_width] 256
+[signals_width] 415
 [sst_expanded] 1
 [sst_vpaned_height] 304
 @200
 -A
 @24
 top.dut.acu.input_from_alu[7:0]
+@28
+top.dut.acu.we
 @200
 -ALU
 @24
@@ -27,11 +29,16 @@ top.dut.alu.i_1[7:0]
 top.dut.alu.i_2[7:0]
 @22
 top.dut.alu.o_main[7:0]
+@28
+top.dut.alu.carry_out
+top.dut.alu.carry_in
+@22
+top.dut.alu.o_main[7:0]
 @200
 -PM
 @28
 top.dut.pm.instruction[15:0]
-@22
+@24
 top.dut.pm.instruction_address[4:0]
 @200
 -DUT
@@ -52,5 +59,27 @@ top.dut.rf.register_address[1:0]
 top.dut.rf.register_value[7:0]
 @28
 top.dut.rf.we
+@200
+-MEM
+@22
+top.dut.mem.addr[9:0]
+@24
+top.dut.mem.data_input[7:0]
+@22
+top.dut.mem.data_output[7:0]
+@28
+top.dut.mem.clk
+top.dut.mem.rst
+top.dut.mem.we
+@200
+-MUX
+@23
+top.dut.mux.data_input_imm[7:0]
+@22
+top.dut.mux.data_input_mem[7:0]
+top.dut.mux.data_input_rf[7:0]
+top.dut.mux.data_output_from_mux[7:0]
+@28
+top.dut.mux.select[1:0]
 [pattern_trace] 1
 [pattern_trace] 0

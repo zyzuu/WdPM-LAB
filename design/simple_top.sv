@@ -2,10 +2,6 @@ module simple_top(
     input logic clk,
     input logic rst,
     output logic [15:0] instruction_wire,
-    //output logic ce_0_wire,
-    //output logic ce_1_wire,
-    //output logic ce_2_wire,
-    //output logic ce_3_wire,
     output logic RF_we,
     output logic A_we,
     output logic [2:0] ALU_opcode_wire,
@@ -14,12 +10,11 @@ module simple_top(
     localparam DATA_WIDTH = 8;
     localparam MEMORY_ADDR_WIDTH = 10;
     localparam MUX_DEMUX_SELECTOR_WIDTH = 2;
+    localparam PC_VALUE_WIDTH = 5;
     logic [4:0] instruction_address_wire;
-    //logic [5:0] instruction_wire;
+
     logic [1:0] register_address_wire;
-    //logic [1:0] RF_addr;
-    //logic ce_0_wire, ce_1_wire, ce_2_wire, ce_3_wire, ALU_ce, A_ce;
-    //logic [2:0] ALU_opcode_wire;
+
     logic carry_in_wire, carry_out_wire;
     logic [DATA_WIDTH-1:0] accumulator_input_wire;
     logic [DATA_WIDTH-1:0] accumulator_output_wire;
@@ -31,9 +26,14 @@ module simple_top(
     logic [MUX_DEMUX_SELECTOR_WIDTH-1:0] mux_selector_wire;
     logic MEM_we;
 
+    logic [PC_VALUE_WIDTH-1:0] id_pc_jump_value_wire;
+    logic id_pc_jump_enable_wire;
+
     program_counter pc(
         .clk(clk),
         .rst(rst),
+        .jump_enable(id_pc_jump_enable_wire),
+        .jump_value(id_pc_jump_value_wire),
         .instruction_address(instruction_address_wire)
         );
 
@@ -52,7 +52,9 @@ module simple_top(
         .MEM_we(MEM_we),
         .IMM_value(immediate_value_output_wire),
         .selector(mux_selector_wire),
-        .A_we(A_we)
+        .A_we(A_we),
+        .PC_jump_enable(id_pc_jump_enable_wire),
+        .PC_jump_value(id_pc_jump_value_wire)
         );
 
     memory mem(

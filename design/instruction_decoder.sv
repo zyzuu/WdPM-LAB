@@ -6,7 +6,8 @@ module instruction_decoder#(
     parameter RF_ADDR_WIDTH = 2,
     parameter MEMORY_ADDR_WIDTH = 10,
     parameter IMMEDIATE_WIDTH = 8,
-    parameter MUX_DEMUX_SELECTOR_WIDTH = 2
+    parameter MUX_DEMUX_SELECTOR_WIDTH = 2,
+    parameter PC_VALUE_WIDTH = 5
 )(
     input logic [INSTRUCTION_WIDTH-1:0] instruction,
 
@@ -27,11 +28,15 @@ module instruction_decoder#(
     // Immediate value
     output logic [IMMEDIATE_WIDTH-1:0] IMM_value,
 
-    // Mux and Demux selectors for LOAD and STORE instructions
+    // Mux and Demux selectors for LOAD instruction
     output logic [MUX_DEMUX_SELECTOR_WIDTH-1:0] selector,
 
     // Accumulator control
-    output logic A_we
+    output logic A_we,
+
+    // Program counter control, simple jump
+    output logic PC_jump_enable,
+    output logic [PC_VALUE_WIDTH-1:0] PC_jump_value
 
 );
     cpu_instructions current_code;
@@ -44,6 +49,8 @@ module instruction_decoder#(
         IMM_value = 8'b0;
         selector = 2'b0;
         ALU_opcode = 3'b111;
+        PC_jump_enable = 1'b0;
+        PC_jump_value = 5'b0;
 
         current_code = cpu_instructions'(instruction[3:0]);
         case(current_code)
@@ -83,6 +90,10 @@ module instruction_decoder#(
                 RF_we = 1'b0;
                 MEM_we = 1'b0;
                 A_we = 1'b0;
+            end
+            JUMP: begin
+                PC_jump_enable = 1'b1;
+                PC_jump_value = instruction[8:4];
             end
             default: begin
                     ALU_opcode = current_code[2:0];

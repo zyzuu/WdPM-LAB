@@ -7,6 +7,7 @@
 `define LOAD 4'b0111
 `define STOREMEM 4'b1000
 `define STORERF 4'b1001
+`define JUMP 4'b1010
 `define NOP 4'b1111
 module program_memory#(parameter BITS_FOR_INSTRUCTIONS = 5, parameter INSTRUCTION_WIDTH = 16, parameter NUMBER_OF_INSTRUCTIONS=32)(
     input logic [BITS_FOR_INSTRUCTIONS-1:0] instruction_address,
@@ -32,10 +33,10 @@ initial begin
     instruction_set[7] = {10'd0, 2'b00, `ADD};
     instruction_set[8] = {10'd0, 2'b00, `ADD};
     instruction_set[9] = {10'd0, 2'b00, `ADD};
-    instruction_set[10] = {10'd0, 2'b10,`STORERF};
+    instruction_set[10] = {2'd0, 10'd0,`STOREMEM};
     instruction_set[11] = {10'd0, 2'b00,  `NOP};
-    instruction_set[12] = {10'd0, 2'b00,  `NOP};
-    instruction_set[13] = {10'd0, 2'b00,  `NOP};
+    instruction_set[12] = {10'd0,2'b01,`LOAD};
+    instruction_set[13] = {7'd0, 5'b0,  `JUMP};
     instruction_set[14] = {8'd255,2'b00, 2'b10,`LOAD};
     instruction_set[15] = {10'd0, 2'b10, `ADD};
     instruction_set[16] = {10'd0, 2'b00, `ADD};

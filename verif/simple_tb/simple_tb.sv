@@ -15,7 +15,7 @@ module top();
     //.ce_2_wire(ce_2_wire),
     //.ce_3_wire(ce_3_wire),
     .RF_we(RF_we),
-    .A_re(A_re),
+    .A_we(A_re),
     .ALU_opcode_wire(ALU_opcode_wire),
     .RF_addr(RF_addr));
 

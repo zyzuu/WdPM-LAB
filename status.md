@@ -1,9 +1,4 @@
 # TODO:
- - Connect properly mux and demux to the instruction decoder and proper blocks
- - Add immediate value to the instruction set and decoder
- - Add simple jumps
- - Add load word and store word commands to the instruction set
- - Add simple jump to the instruction set
 # Design part
 1. ALU
     - Addition
@@ -16,23 +11,18 @@
     - Works as D flip flop
 3. Instruction decoder
     - Takes an instruction
-    - Selects one of three operations
-        - Store (Probably needs a rework to work as "store word (sw)" instruction)
+    - Parses instruction and does action
+        - Store (to memory and register file)
+        - Load (from memory, register file and immediate value)
         - NOP (Do nothing)
         - ALU Operations
+        - JUMP
 4. Program Counter
-    - For now works as a counter that increments instruction by 1
-    - TODO: Prepare for jumps and branches
-        -Add address input and counter input
+    - Works as a counter that increments instruction by 1
+    - Works with simple jump, takes value and jump enable from instruction decoder
 5. Program Memory
-    - Reads the memory in binary form
     - Takes an instruction address form PC
     - Sends the proper instruction to the output
-6. Register file
+6. Register file and Memory
     - Selects proper register and writes the accumulator input to it
-    - TODO:
-        - ADD RESET
-        - Prepare proper memory.mem file
 7. Simple top
-## Not started
-1. Whole verification part
